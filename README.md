@@ -1,4 +1,4 @@
-# Configure AWS SAM to your serverless applications
+# Configure AWS SAM to run serverless applications in your local environment 
 AWS Serverless examples using SAM
 
 ### Step 1
