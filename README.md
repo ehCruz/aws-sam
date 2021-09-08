@@ -1,4 +1,4 @@
-# Configure AWS SAM to run serverless applications in your local environment 
+# Configure AWS SAM to run serverless applications in your local environment(JAVA/Quarkus)
 AWS Serverless examples using SAM
 
 ### Step 1
@@ -46,3 +46,45 @@ Verify the installation
 ```
 $ sam --version
 ```
+
+## Setup your JAVA environment
+
+- Install JAVA 11
+- Install Maven
+- Install and configure the GraalVM 10 so we can build our native image
+
+After configuring your development environment we can now test a sample application.
+We can use a Quarkus Maven Archetype, on your cli just put:
+```
+mvn archetype:generate \
+       -DarchetypeGroupId=io.quarkus \
+       -DarchetypeArtifactId=quarkus-amazon-lambda-archetype \
+       -DarchetypeVersion=2.2.2.Final
+```
+
+Start your Docker:
+```
+sudo service docker start
+```
+
+Now just run the following command:
+```
+sam local invoke --template target/sam.jvm.yaml --event payload.json
+```
+---
+** If you get the following error from Docker after trying invoke a lambda:
+```
+ERROR: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock
+```
+Grant the followin permissions for Docker:
+```
+sudo chmod 666 /var/run/docker.sock
+```
+----
+
+If all goes right, you should see something like this as output from your sample lambda function:
+```
+{"result":"hello Bill","requestId":"c426ea01-d149-43fa-aed2-b50f36b50506"}
+```
+
+### Lets integrate with DynamoDB
