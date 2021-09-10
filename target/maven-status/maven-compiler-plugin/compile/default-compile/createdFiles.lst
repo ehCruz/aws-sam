@@ -1,0 +1,9 @@
+test/ProcessingService.class
+test/AbstractService.class
+test/InputObject.class
+test/OutputObject.class
+test/UnusedLambda.class
+test/TestLambda.class
+test/StreamLambda.class
+test/FruitSyncService.class
+test/Fruit.class
