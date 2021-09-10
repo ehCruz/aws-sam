@@ -110,7 +110,7 @@ docker run -d -v "$PWD":/dynamodb_local_db -p 8000:8000 --network sam-demo --nam
 npm install -g dynamodb-admin
 ```
 
-Set up the endpoint on the application, pointing to the network that we previously set, i.e:
+Set up the endpoint on the application, pointing to the **name** that we gave to our DynamoDB container, i.e:
 ```
 quarkus.dynamodb.endpoint-override=http://dynamodb:8000
 ```
