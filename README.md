@@ -87,4 +87,35 @@ If all goes right, you should see something like this as output from your sample
 {"result":"hello Bill","requestId":"c426ea01-d149-43fa-aed2-b50f36b50506"}
 ```
 
+## Create a Docker Network
+We need to create a Docker network were we gonna run our local application:
+```
+docker network create sam-demo
+```
+
 ### Lets integrate with DynamoDB
+
+First let's install the DynamoDB imagem:
+```
+docker pull amazon/dynamodb-local
+```
+
+After that we can start our DynamoDB container:
+```
+docker run -d -v "$PWD":/dynamodb_local_db -p 8000:8000 --network sam-demo --name dynamodb amazon/dynamodb-local
+```
+
+(Optional) GUI for DynamoDB
+```
+npm install -g dynamodb-admin
+```
+
+Set up the endpoint on the application, pointing to the network that we previously set, i.e:
+```
+quarkus.dynamodb.endpoint-override=http://dynamodb:8000
+```
+
+Now we can run our Lambda with the following command:
+```
+sam local invoke --docker-network sam-demo --template target/sam.jvm.yaml --event payload.json
+```
