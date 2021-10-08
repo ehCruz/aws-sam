@@ -79,11 +79,15 @@
             <version>${testcontainers.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- Required by testcontainers.localstack -->
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-core</artifactId>
             <version>${awssdk.testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-junit5-mockito</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
